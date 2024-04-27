@@ -3,3 +3,7 @@ numpy
 matplotlib
 ipython
 jupyter
+tensorflow
+pandas
+scikit-learn
+scipy
