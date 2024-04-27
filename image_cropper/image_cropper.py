@@ -50,4 +50,5 @@ def crop_images_to_circle(root_folder, output_root_folder):
                     if w > MIN_CONTOUR_WIDTH:
                         cropped_image = image[y:y+h, x:x+w]
                         cv2.imwrite(join(output_folder, f"{element[:-4]}__{j+1:003d}.jpg"), cropped_image)
+
     return True
