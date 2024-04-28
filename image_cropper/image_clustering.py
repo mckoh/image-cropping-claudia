@@ -54,23 +54,25 @@ def load_image_folder(folder_path):
 
     return array(images)
 
-def cluster_images(flat_images, title):
+def plot_dendrogram(flat_images, title):
     Z = hierarchy.linkage(flat_images, method="ward")
     hierarchy.dendrogram(Z)
     plt.title(title)
     plt.savefig(f"output/{title}__dendrogram.png")
-    plt.show()
 
-def plot_examples(flat_images, folder, title, n_cluster=5, n_examples=3):
+def cluster_images(flat_images, folder, n_cluster):
 
-    # prepare a new cluster engine
     kmeans_engine = KMeans(n_clusters=n_cluster)
-
-    # cluster images and put into a DataFrame
     clustering_result = DataFrame({
         "image": [join(folder, value) for value in listdir(folder)],
         "cluster": kmeans_engine.fit_predict(flat_images)
     })
+
+    return clustering_result
+
+def plot_examples(clustering_result, title, n_examples=3):
+
+    n_cluster = len(clustering_result.cluster.value_counts())
 
     # take n example images from the clustered dataset
     for cluster in range(n_cluster):
