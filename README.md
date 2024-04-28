@@ -19,6 +19,8 @@ The tool can also be used to cluster images based on image content. Clustering i
 
 The clustering is afterwards done useing a `KMeans` model (as this is capable of clustering large quantities of images). Before doing so, you can plot a dendrogram to find the optimal number of clusters.
 
+All images are loaded by `cv2`, resized to `(224, 224, 3)`, preprocessed to match the requirements of `VGG16` and then fed through the non-top part of the model (including `Flatten()`) to get an representative image vector. These vectors can than be clustered.
+
 ```python
 title = "Organoide_10000, 5000, 2000, 1000 Zellen"
 folder = join("input_data", "Images_Cropped", "d")
