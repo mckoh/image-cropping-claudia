@@ -15,11 +15,9 @@ crop_images_to_circle(
 
 ## Clustering
 
-The tool can also be used to cluster images based on image content. Clustering is done with the help of an image vector (all lines of an image put together). To enhance the image before clustering, images are fed through an VGG16 model (without top) and are finally flattened by a `Flatten()` layer.
+The tool can also be used to cluster images based on image content. Clustering is done with the help of an image vector (all lines of an image put together). To enhance the image before clustering, images  are loaded by `cv2`, resized to `(224, 224, 3)`, fed through an `VGG16` model (without top) and are finally flattened by a `Flatten()` layer.
 
 The clustering is afterwards done useing a `KMeans` model (as this is capable of clustering large quantities of images). Before doing so, you can plot a dendrogram to find the optimal number of clusters.
-
-All images are loaded by `cv2`, resized to `(224, 224, 3)`, preprocessed to match the requirements of `VGG16` and then fed through the non-top part of the model (including `Flatten()`) to get an representative image vector. These vectors can than be clustered.
 
 ```python
 title = "Organoide_10000, 5000, 2000, 1000 Zellen"
